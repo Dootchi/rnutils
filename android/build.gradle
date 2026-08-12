@@ -1,0 +1,67 @@
+buildscript {
+  ext.PangleMediationReactNative = [
+    minSdkVersion: 24,
+    compileSdkVersion: 36,
+    targetSdkVersion: 36
+  ]
+
+  ext.getExtOrDefault = { prop ->
+    if (rootProject.ext.has(prop)) {
+      return rootProject.ext.get(prop)
+    }
+
+    return PangleMediationReactNative[prop]
+  }
+
+  repositories {
+    google()
+    mavenCentral()
+    maven {
+      url 'https://artifact.bytedance.com/repository/pangle'
+    }
+  }
+
+  dependencies {
+    classpath "com.android.tools.build:gradle:8.7.2"
+  }
+}
+
+apply plugin: 'com.android.library'
+
+android {
+  namespace 'com.bytedance.sdk.openadsdk.mediation.rn'
+
+  compileSdkVersion getExtOrDefault('compileSdkVersion')
+
+  defaultConfig {
+    minSdkVersion getExtOrDefault('minSdkVersion')
+    targetSdkVersion getExtOrDefault('targetSdkVersion')
+    consumerProguardFiles 'consumer-rules.pro'
+  }
+
+  buildFeatures {
+    buildConfig true
+  }
+
+  buildTypes {
+    release {
+      minifyEnabled false
+    }
+  }
+
+
+  lint {
+    disable 'GradleCompatible'
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+}
+
+dependencies {
+  compileOnly 'com.facebook.react:react-android'
+  compileOnly 'com.pangle.global:test-suite:0.2.22'
+  implementation 'com.pangle.global:pag-sdk-m:8.1.6.6'
+}

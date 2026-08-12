@@ -1,0 +1,1 @@
+export { RewardedAd } from './RewardedAd';

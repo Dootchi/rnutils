@@ -1,0 +1,1 @@
+export { InterstitialAd } from './InterstitialAd';
