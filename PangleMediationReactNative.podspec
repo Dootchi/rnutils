@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   s.source_files = 'ios/**/*.{h,m,mm,swift,cpp}'
   s.private_header_files = 'ios/**/*.h'
 
-  s.dependency 'Ads-Global-M/Mediation', '8.1.6.7'
+  s.dependency 'Ads-Global-M/Mediation', '8.1.6.4'
 
   install_modules_dependencies(s)
 end
